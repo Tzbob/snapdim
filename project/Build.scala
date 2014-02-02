@@ -15,7 +15,6 @@ object SnapDimBuild extends Build {
       //    v4l2.so, xbacklight
       //    on archlinux this is v4l-utils and xorg-xbacklight
     )
-
   )
 
   lazy val project = Project(

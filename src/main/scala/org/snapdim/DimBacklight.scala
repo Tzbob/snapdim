@@ -20,7 +20,7 @@ object DimBacklight extends App {
       x <- 0 until image.getWidth
       y <- 0 until image.getHeight
       pixel = new Color(image.getRGB(x, y))
-    } yield (getLuminance(pixel))
+    } yield getLuminance(pixel)
 
     luminances.sum / luminances.length
   }
@@ -28,10 +28,9 @@ object DimBacklight extends App {
   val cam = Webcam.getDefault
 
   cam.open()
-  val sampleLumAvg = for (_ <- 1 to 10) yield (getLumAvg(cam.getImage))
+  val sampleLumAvg = for (_ <- 1 to 5) yield getLumAvg(cam.getImage)
   cam.close()
 
   val avgLum = sampleLumAvg.sum / sampleLumAvg.length
-
   s"xbacklight -set $avgLum".!
 }
